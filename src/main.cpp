@@ -82,7 +82,7 @@ const char *DEFAULT_PREFIX = "000000000000";
 // Notes:
 //
 //   The maximum output length (bytes) is limited to 255 * KDF_CMAC_SIZE,
-//   since the the counter field is a single byte integer.
+//   since the counter field is a single byte integer.
 //
 //   The caller is responsible for allocating and freeing memory for generated output.
 //
