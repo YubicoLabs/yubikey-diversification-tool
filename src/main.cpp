@@ -82,7 +82,7 @@ const char *DEFAULT_PREFIX = "000000000000";
 // Notes:
 //
 //   The maximum output length (bytes) is limited to 255 * KDF_CMAC_SIZE,
-//   since the the counter field is a single byte integer.
+//   since the counter field is a single byte integer.
 //
 //   The caller is responsible for allocating and freeing memory for generated output.
 //
@@ -236,7 +236,7 @@ void readArguments(int argc, char **argv,
         if (!strcasecmp(argv[i], "-h"))
         {
             printf("%s\n"
-                   "  -h          - help"
+                   "  -h          - help\n"
                    "  -p|--prefix - key prefix (12 hex digits) or 'default' or 'random'\n"
                    "  -k|--key    - master key (64 hex digits) or 'default' or 'random' or filename from which to derive keys\n"
                    "  -s]--serial - serial number (decimal number) or 'random'\n",
