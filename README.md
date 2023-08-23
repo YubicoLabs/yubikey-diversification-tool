@@ -43,7 +43,7 @@ The tool can either take specific input for the parameters to the Yubico impleme
 
 For example, the following command will randomize the master key, diversification data prefix and serial number used as input to AES_CMAC_256 for all supported labels.
 ```
-> yubikey-divserification-tool -k random -s random -p random
+> yubikey-diversification-tool -k random -s random -p random
 
 Using BMK: 932bd0c111c77735808befddc145b2b530f6af7e2a33764084d2210b7734e277
 Using Diversification Data: 5c6c42aafeb5d5373ee1
