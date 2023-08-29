@@ -1,44 +1,71 @@
 {
-    "version": 3,
-    "configurePresets": [
-        {
-            "name": "default",
-            "description": "Sets generator, build and install directory, vcpkg",
-            "hidden": true,
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/dist/${presetName}",
-                "CMAKE_TOOLCHAIN_FILE": {
-                    "type": "FILEPATH",
-                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-                }
-            },
-            "environment": {
-                "VCPKG_FEATURE_FLAGS": "manifests,versions,binarycaching,registries"
-            }
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "default",
+      "description": "Sets generator, build and install directory, vcpkg",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/dist/${presetName}",
+        "CMAKE_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
         },
-        {
-            "name": "win-x64-debug",
-            "displayName": "Debug - Winx64",
-            "description": "Using compilers for Visual Studio 16 2019 (x64 architecture)",
-            "generator": "Visual Studio 16 2019",
-            "toolset": "host=x64",
-            "architecture": "x64",
-            "inherits": [
-                "default"
-            ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "win-x64-dist",
-            "description": "",
-            "displayName": "",
-            "configurePreset": "win-x64-debug",
-            "targets": [ "install" ]
-        }
-    ]
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static",
+        "VCPKG_LIBRARY_LINKAGE": "static",
+        "VCPKG_MANIFEST_MODE": "ON",
+        "VCPKG_MANIFEST_INSTALL": "ON"
+      },
+      "environment": {
+        "VCPKG_FEATURE_FLAGS": "manifests,versions,binarycaching,registries"
+      }
+    },
+    {
+      "name": "win-x64-debug-static",
+      "displayName": "Debug - Winx64",
+      "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+      "generator": "Visual Studio 17 2022",
+      "toolset": "host=x64",
+      "architecture": "x64",
+      "inherits": [
+        "default"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "name": "win-x64-release-static",
+      "displayName": "win-x64-release-static",
+      "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+      "generator": "Visual Studio 17 2022",
+      "toolset": "host=x64",
+      "architecture": "x64",
+      "inherits": [
+        "default"
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "MinSizeRel"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "win-x64-debug",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "win-x64-debug-static",
+      "targets": [
+        "install"
+      ]
+    },
+    {
+      "name": "win-x64-release",
+      "description": "",
+      "displayName": "",
+      "configurePreset": "win-x64-release-static",
+      "configuration": "MinSizeRel"
+    }
+  ]
 }
