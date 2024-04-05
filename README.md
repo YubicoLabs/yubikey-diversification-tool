@@ -11,18 +11,18 @@ This tool provides an example implementation of the diversification used by Yubi
 
 ## Building
 
-This example tool uses CMake to build the C++ on almost every platform that supports
+This example tool uses CMake to build the C++ on almost every platform that supports it and OpenSSL.
 
 ### Windows
-We have chosen [VcPkg](https://github.com/microsoft/vcpkg) to manage dependencies on Windows. 
+We have chosen [VcPkg](https://github.com/microsoft/vcpkg) to manage dependencies on Windows.
 
-  1. Install VcPkg on your machine and make sure VCPKG_ROOT is set in your PATH. See the [VcPkg](https://github.com/microsoft/vcpkg#quick-start-windows) project documentation.
-  2. Integrating VcPkg into VSCode or Visual Studio with CMake support makes finding packages installed by VcPkg very easy, using its CMake toolchain file (see CMakePresets.json)
-  3. Install OpenSSL via VcPkg, so CMake can find it, eg:
-    ```
-    > .\vcpkg\vcpkg install openssl:x64-windows
-    ```
-  4. If using VsCode or Visual Studio, configure CMake using the "Debug - Win64" preset.
+1. Install VcPkg on your machine and make sure VCPKG_ROOT is set in your PATH. See the [VcPkg](https://github.com/microsoft/vcpkg#quick-start-windows) project documentation.
+2. Integrating VcPkg into VSCode or Visual Studio with CMake support makes finding packages installed by VcPkg very easy, using its CMake toolchain file (see CMakePresets.json)
+3. Install OpenSSL via VcPkg, so CMake can find it, e.g.:
+   ```
+   > vcpkg install openssl:x64-windows
+   ```
+4. If using VsCode or Visual Studio, configure CMake using the "Debug - Win64" preset.
 
 ### Linux/MacOS
 OpenSSL (libcrypto) is already present on these systems.
@@ -34,16 +34,16 @@ OpenSSL (libcrypto) is already present on these systems.
    > cmake ..
    ```
 3. Build the project.
-```
-> cmake --build . --target install
-```
+   ```
+   > cmake --build . --target install
+   ```
 
 ## Running the tool
 The tool can either take specific input for the parameters to the Yubico implementation of a SP800-108 KDF using AES_CMAC_256 or randomize these arguments to generate test vectors.
 
 For example, the following command will randomize the master key, diversification data prefix and serial number used as input to AES_CMAC_256 for all supported labels.
 ```
-> yubikey-divserification-tool -k random -s random -p random
+> yubikey-diversification-tool -k random -s random -p random
 
 Using BMK: 932bd0c111c77735808befddc145b2b530f6af7e2a33764084d2210b7734e277
 Using Diversification Data: 5c6c42aafeb5d5373ee1
